@@ -31,9 +31,15 @@ namespace Algorithms.Sorting
 {
 	/// <summary>
 	/// QUICK SORT
-	/// Best used for
-	/// Sorted, not sorted?
-	/// etc
+	/// Quick sort is a comparison sort, meaning that it can sort items of any type for which a "less-than" relation.
+	/// QuickSort is a Divide and Conquer algorithm.
+	/// It picks an element as pivot and partitions the given array around the picked pivot.
+	/// ******************************************************
+	/// There are many different versions of quickSort that pick pivot in different ways:
+	/// -Always pick first element as pivot.
+	/// -Always pick last element as pivot.
+	/// -Pick a random element as pivot.
+	/// -Pick median as pivot.
 	/// </summary>
 	public static class QuickSort
 	{
@@ -44,22 +50,32 @@ namespace Algorithms.Sorting
 
 		public static void SortAscending_Recursive(ref int[] data, int left, int right)
 		{
-			//Partition vector and save last left index
-			int index = Partition(ref data, left, right);
-
-			//If the original left is less than last left-1
-			if (left < index - 1)
+			if (left < right)
 			{
-				//Pass again w/ alternate right
-				SortAscending_Recursive(ref data, left, index - 1);
-			} // end if
+				int pivot = PartitionAscending(ref data, left, right);
 
-			//If the last left index is less than right
-			if (index < right)
+				SortAscending_Recursive(ref data, left, pivot - 1);
+				SortAscending_Recursive(ref data, pivot + 1, right);
+			}
+		} // end method
+
+		public static int PartitionAscending(ref int[] data, int left, int right)
+		{
+			int pivot = data[right];
+			int i = (left - 1);
+
+			for (int j = left; j <= right - 1; j++)
 			{
-				//Pass again w/ alternate left
-				SortAscending_Recursive(ref data, index, right);
-			} // end if
+				// If current element is smaller than the pivot
+				if (data[j] < pivot)
+				{
+					i++;
+					Swap(ref data[i], ref data[j]);
+				}
+			} // end for
+
+			Swap(ref data[i + 1], ref data[right]);
+			return (i + 1);
 		} // end method
 
 		public static void SortDescending(ref int[] data)
@@ -69,51 +85,31 @@ namespace Algorithms.Sorting
 
 		public static void SortDescending_Recursive(ref int[] data, int left, int right)
 		{
-			//Partition vector and save last left index
-			int index = Partition(ref data, left, right);
-
-			//If the original left is less than last left-1
-			if (left > index - 1)
+			if (left < right)
 			{
-				//Pass again w/ alternate right
-				SortAscending_Recursive(ref data, index - 1, left);
-			} // end if
+				int pivot = PartitionDescending(ref data, left, right);
 
-			//If the last left index is less than right
-			if (index > right)
-			{
-				//Pass again w/ alternate left
-				SortAscending_Recursive(ref data, right, index);
-			} // end if
+				SortDescending_Recursive(ref data, left, pivot - 1);
+				SortDescending_Recursive(ref data, pivot + 1, right);
+			}
 		} // end method
 
-		public static int Partition(ref int[] data, int left, int right)
+		public static int PartitionDescending(ref int[] data, int left, int right)
 		{
-			//Get pivot element
-			int pivot = data[(left + right) / 2];
+			int pivot = data[right];
+			int i = (left - 1);
 
-			//While left is LESS than right
-			while (left < right)
+			for (int j = left; j <= right - 1; j++)
 			{
-				//While left element is less than pivot
-				while (data[left] < pivot)
-					left++; // get next left
-
-				//While right element is greater than pivot
-				while (data[right] > pivot)
-					right--; // get next right
-
-				//If left is less than right, swap and increment
-				if (left <= right)
+				if (data[j] > pivot)
 				{
-					Swap(ref data[right], ref data[left]);
-					left++;
-					right--;
+					i++;
+					Swap(ref data[i], ref data[j]);
 				}
-			} // end while
+			} // end for
 
-			//Return last left index
-			return left;
+			Swap(ref data[i + 1], ref data[right]);
+			return (i + 1);
 		} // end method
 
 		public static void Swap(ref int a, ref int b)

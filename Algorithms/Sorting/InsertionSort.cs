@@ -34,9 +34,11 @@ namespace Algorithms.Sorting
 {
 	/// <summary>
 	/// INSERTION SORT
-	/// Best used for
-	/// Sorted, not sorted?
-	/// etc
+	/// Time Complexity: O(n*2)
+	/// ******************************************************
+	/// Insertion sort is a simple sorting algorithm that builds the final sorted array (or list) one item at a time.
+	/// It is not unlike the way we sort playing cards in our hands.
+	/// It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
 	/// </summary>
 	public static class InsertionSort
 	{

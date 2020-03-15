@@ -26,9 +26,6 @@
 //
 // ******************************************************************************************************************
 //
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Algorithms.Sorting
 {
@@ -43,7 +40,7 @@ namespace Algorithms.Sorting
 		public static void SortAscending(ref int[] data)
 		{
 			SortAscending_Recursive(ref data, 0, data.Length - 1);
-		}
+		} // end method
 
 		public static void SortAscending_Recursive(ref int[] data, int left, int right)
 		{
@@ -68,7 +65,7 @@ namespace Algorithms.Sorting
 		public static void SortDescending(ref int[] data)
 		{
 			SortDescending_Recursive(ref data, 0, data.Length - 1);
-		}
+		} // end method
 
 		public static void SortDescending_Recursive(ref int[] data, int left, int right)
 		{
@@ -100,28 +97,24 @@ namespace Algorithms.Sorting
 			{
 				//While left element is less than pivot
 				while (data[left] < pivot)
-				{
 					left++; // get next left
-				} // end while
 
 				//While right element is greater than pivot
 				while (data[right] > pivot)
-				{
 					right--; // get next right
-				} // end while
 
-				//Is left is less than right, swap and increment
+				//If left is less than right, swap and increment
 				if (left <= right)
 				{
 					Swap(ref data[right], ref data[left]);
 					left++;
 					right--;
-				} // end if
+				}
 			} // end while
 
 			//Return last left index
 			return left;
-		} // end function partition()
+		} // end method
 
 		public static void Swap(ref int a, ref int b)
 		{

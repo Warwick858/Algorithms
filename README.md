@@ -18,7 +18,9 @@
 * Algorithms
 	* BinarySearch
 	* BubbleSort
+	* HeapSort
 	* InsertionSort
+	* MergeSort
 	* QuickSort
 	* ShellSort
 	

@@ -29,6 +29,12 @@
 
 namespace Algorithms.Sorting
 {
+	/// <summary>
+	/// BUBBLE SORT
+	/// Best used for
+	/// Sorted, not sorted?
+	/// etc
+	/// </summary>
 	public static class BubbleSort
 	{
 		public static void SortAscending(ref int[] data)

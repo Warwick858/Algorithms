@@ -49,61 +49,39 @@ namespace AlgorithmsTests.Searching
 		}
 
 		[Test]
-		public void SortAscending()
+		public void SearchRecursive()
 		{
+			object result = 0;
 			int[] data = _data1;
 
 			_stopWatch.Start();
-			BinarySearch.SortAscending(ref data);
+			result = BinarySearch.SearchRecursive(data, 8, 0, data.Length - 1);
 			_stopWatch.Stop();
 
 			Logger.WriteLine($"**********************************************************************");
-			Logger.WriteLine($"BinarySearch | ascending | output: {JsonSerializer.Serialize(data)}");
+			Logger.WriteLine($"BinarySearch | recursive | output: {JsonSerializer.Serialize(result)}");
 			Logger.WriteLine($"Elapsed Time: {_stopWatch.Elapsed.ToString()}");
 			Logger.WriteLine($"**********************************************************************");
 
-			for (int i = 0; i < data.Length - 1; i++)
-			{
-				if (data[i] > data[i + 1])
-					Assert.Fail();
-			} // end foreach
-
-			Assert.Pass();
+			Assert.IsTrue(int.TryParse(JsonSerializer.Serialize(result), out int num));
 		} // end method
 
 		[Test]
-		public void SortDescending()
+		public void SearchIterative()
 		{
+			object result = 0;
 			int[] data = _data1;
 
 			_stopWatch.Start();
-			BinarySearch.SortDescending(ref data);
+			result = BinarySearch.SearchIterative(data, 8);
 			_stopWatch.Stop();
 
 			Logger.WriteLine($"**********************************************************************");
-			Logger.WriteLine($"BinarySearch | ascending | output: {JsonSerializer.Serialize(data)}");
+			Logger.WriteLine($"BinarySearch | iterative | output: {JsonSerializer.Serialize(result)}");
 			Logger.WriteLine($"Elapsed Time: {_stopWatch.Elapsed.ToString()}");
 			Logger.WriteLine($"**********************************************************************");
 
-			for (int i = 0; i < data.Length - 1; i++)
-			{
-				if (data[i] < data[i + 1])
-					Assert.Fail();
-			} // end foreach
-
-			Assert.Pass();
-		} // end method
-
-		[Test]
-		public void Swap()
-		{
-			int a = 7;
-			int b = 2;
-
-			BinarySearch.Swap(ref a, ref b);
-
-			Assert.IsTrue(a == 2);
-			Assert.IsTrue(b == 7);
+			Assert.IsTrue(int.TryParse(JsonSerializer.Serialize(result), out int num));
 		} // end method
 	} // end class
 } // end namespace

@@ -40,39 +40,51 @@ namespace Algorithms.Searching
 	/// </summary>
 	public static class BinarySearch
 	{
-		public static void SortAscending(ref int[] data)
+		public static object SearchRecursive(int[] inputArray, int key, int min, int max)
 		{
-			for (int j = 0; j < data.Length - 1; j++)
+			if (min > max)
 			{
-				for (int i = 0; i < data.Length - 1; i++)
+				return "Nil";
+			}
+			else
+			{
+				int mid = (min + max) / 2;
+				if (key == inputArray[mid])
 				{
-					if (data[i] > data[i + 1])
-					{
-						Swap(ref data[i], ref data[i + 1]);
-					}
-				} // end for
-			} // end for
+					return ++mid;
+				}
+				else if (key < inputArray[mid])
+				{
+					return SearchRecursive(inputArray, key, min, mid - 1);
+				}
+				else
+				{
+					return SearchRecursive(inputArray, key, mid + 1, max);
+				}
+			}
 		} // end method
 
-		public static void SortDescending(ref int[] data)
+		public static object SearchIterative(int[] inputArray, int key)
 		{
-			for (int j = 0; j < data.Length - 1; j++)
+			int min = 0;
+			int max = inputArray.Length - 1;
+			while (min <= max)
 			{
-				for (int i = 0; i < data.Length - 1; i++)
+				int mid = (min + max) / 2;
+				if (key == inputArray[mid])
 				{
-					if (data[i] < data[i + 1])
-					{
-						Swap(ref data[i], ref data[i + 1]);
-					}
-				} // end for
-			} // end for
-		} // end method
-
-		public static void Swap(ref int a, ref int b)
-		{
-			int temp = a;
-			a = b;
-			b = temp;
+					return ++mid;
+				}
+				else if (key < inputArray[mid])
+				{
+					max = mid - 1;
+				}
+				else
+				{
+					min = mid + 1;
+				}
+			}
+			return "Nil";
 		} // end method
 	} // end class
 } // end namespace

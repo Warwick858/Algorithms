@@ -57,14 +57,15 @@ namespace Algorithms.Sorting
 
 		public static void SortDescending(ref int[] data)
 		{
-			for (int j = 0; j < data.Length - 1; j++)
+			for (int j = 1; j < data.Length; j++)
 			{
-				for (int i = 0; i < data.Length - 1; i++)
+				for (int i = j; i >= 1; i--)
 				{
-					if (data[i] < data[i + 1])
-					{
-						Swap(ref data[i], ref data[i + 1]);
-					}
+					//If element i-1 is LESS than element i
+					if (data[i - 1] < data[i])
+						Swap(ref data[i - 1], ref data[i]);
+					else // element i-1 is GREATER than element i
+						break;
 				} // end for
 			} // end for
 		} // end method

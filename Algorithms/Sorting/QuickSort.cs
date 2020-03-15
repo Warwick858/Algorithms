@@ -67,16 +67,27 @@ namespace Algorithms.Sorting
 
 		public static void SortDescending(ref int[] data)
 		{
-			for (int j = 0; j < data.Length - 1; j++)
+			SortDescending_Recursive(ref data, 0, data.Length - 1);
+		}
+
+		public static void SortDescending_Recursive(ref int[] data, int left, int right)
+		{
+			//Partition vector and save last left index
+			int index = Partition(ref data, left, right);
+
+			//If the original left is less than last left-1
+			if (left > index - 1)
 			{
-				for (int i = 0; i < data.Length - 1; i++)
-				{
-					if (data[i] < data[i + 1])
-					{
-						Swap(ref data[i], ref data[i + 1]);
-					}
-				} // end for
-			} // end for
+				//Pass again w/ alternate right
+				SortAscending_Recursive(ref data, index - 1, left);
+			} // end if
+
+			//If the last left index is less than right
+			if (index > right)
+			{
+				//Pass again w/ alternate left
+				SortAscending_Recursive(ref data, right, index);
+			} // end if
 		} // end method
 
 		public static int Partition(ref int[] data, int left, int right)

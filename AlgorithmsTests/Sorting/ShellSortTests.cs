@@ -29,6 +29,7 @@
 using Algorithms.Logging;
 using Algorithms.Sorting;
 using NUnit.Framework;
+using System;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -38,26 +39,28 @@ namespace AlgorithmsTests.Sorting
 	public class ShellSortTests
 	{
 		private Stopwatch _stopWatch;
-		private int[] _data1;
 
-		[SetUp]
+		[OneTimeSetUp]
 		public void Setup()
 		{
 			_stopWatch = new Stopwatch();
-			_data1 = new int[] { 5, 21, 43, 66, 43, 66, 21, 5, 2, 7, 7, 8, 1, 2, 3, 4, 4, 3, 2, 1 };
 		}
 
 		[Test]
-		public void SortAscending()
+		[TestCase(new int[] { 5, 21, 43, 66, 43, 66, 21, 5, 2, 7, 7, 8, 1, 2, 3, 4, 4, 3, 2, 1 })]
+		public void SortAscending(int[] data)
 		{
-			int[] data = _data1;
+			int[] ogData = new int[data.Length];
+			Array.Copy(data, ogData, data.Length);
 
 			_stopWatch.Start();
 			ShellSort.SortAscending(ref data);
 			_stopWatch.Stop();
 
 			Logger.WriteLine($"**********************************************************************");
-			Logger.WriteLine($"ShellSort | ascending | output: {JsonSerializer.Serialize(data)}");
+			Logger.WriteLine($"ShellSort | ascending");
+			Logger.WriteLine($"Input: {JsonSerializer.Serialize(ogData)}");
+			Logger.WriteLine($"Output: {JsonSerializer.Serialize(data)}");
 			Logger.WriteLine($"Elapsed Time: {_stopWatch.Elapsed.ToString()}");
 			Logger.WriteLine($"**********************************************************************");
 
@@ -71,16 +74,20 @@ namespace AlgorithmsTests.Sorting
 		} // end method
 
 		[Test]
-		public void SortDescending()
+		[TestCase(new int[] { 5, 21, 43, 66, 43, 66, 21, 5, 2, 7, 7, 8, 1, 2, 3, 4, 4, 3, 2, 1 })]
+		public void SortDescending(int[] data)
 		{
-			int[] data = _data1;
+			int[] ogData = new int[data.Length];
+			Array.Copy(data, ogData, data.Length);
 
 			_stopWatch.Start();
 			ShellSort.SortDescending(ref data);
 			_stopWatch.Stop();
 
 			Logger.WriteLine($"**********************************************************************");
-			Logger.WriteLine($"ShellSort | descending | output: {JsonSerializer.Serialize(data)}");
+			Logger.WriteLine($"ShellSort | descending");
+			Logger.WriteLine($"Input: {JsonSerializer.Serialize(ogData)}");
+			Logger.WriteLine($"Output: {JsonSerializer.Serialize(data)}");
 			Logger.WriteLine($"Elapsed Time: {_stopWatch.Elapsed.ToString()}");
 			Logger.WriteLine($"**********************************************************************");
 

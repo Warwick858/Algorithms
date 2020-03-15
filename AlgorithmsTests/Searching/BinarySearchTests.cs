@@ -28,7 +28,6 @@
 //
 using Algorithms.Logging;
 using Algorithms.Searching;
-using Algorithms.Sorting;
 using NUnit.Framework;
 using System.Diagnostics;
 using System.Text.Json;
@@ -39,27 +38,26 @@ namespace AlgorithmsTests.Searching
 	public class BinarySearchTests
 	{
 		private Stopwatch _stopWatch;
-		private int[] _data1;
 
 		[SetUp]
 		public void Setup()
 		{
 			_stopWatch = new Stopwatch();
-			_data1 = new int[] { 5, 21, 43, 66, 43, 66, 21, 5, 2, 7, 7, 8, 1, 2, 3, 4, 4, 3, 2, 1 };
 		}
 
 		[Test]
-		public void SearchRecursive()
+		//[TestCase(new int[] { 5, 21, 43, 66, 43, 66, 21, 5, 2, 7, 7, 8, 1, 2, 3, 4, 4, 3, 2, 1 })]
+		[TestCase(new int[] { 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 7, 7, 8, 21, 21, 43, 43, 66, 66 })]
+		public void SearchRecursive(int[] data)
 		{
 			object result = 0;
-			int[] data = _data1;
 
 			_stopWatch.Start();
 			result = BinarySearch.SearchRecursive(data, 8, 0, data.Length - 1);
 			_stopWatch.Stop();
 
 			Logger.WriteLine($"**********************************************************************");
-			Logger.WriteLine($"BinarySearch | recursive | output: {JsonSerializer.Serialize(result)}");
+			Logger.WriteLine($"BinarySearch | recursive | index: {JsonSerializer.Serialize(result)}");
 			Logger.WriteLine($"Elapsed Time: {_stopWatch.Elapsed.ToString()}");
 			Logger.WriteLine($"**********************************************************************");
 
@@ -67,17 +65,18 @@ namespace AlgorithmsTests.Searching
 		} // end method
 
 		[Test]
-		public void SearchIterative()
+		//[TestCase(new int[] { 5, 21, 43, 66, 43, 66, 21, 5, 2, 7, 7, 8, 1, 2, 3, 4, 4, 3, 2, 1 })]
+		[TestCase(new int[] { 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 7, 7, 8, 21, 21, 43, 43, 66, 66 })]
+		public void SearchIterative(int[] data)
 		{
 			object result = 0;
-			int[] data = _data1;
 
 			_stopWatch.Start();
 			result = BinarySearch.SearchIterative(data, 8);
 			_stopWatch.Stop();
 
 			Logger.WriteLine($"**********************************************************************");
-			Logger.WriteLine($"BinarySearch | iterative | output: {JsonSerializer.Serialize(result)}");
+			Logger.WriteLine($"BinarySearch | iterative | index: {JsonSerializer.Serialize(result)}");
 			Logger.WriteLine($"Elapsed Time: {_stopWatch.Elapsed.ToString()}");
 			Logger.WriteLine($"**********************************************************************");
 

@@ -70,6 +70,8 @@ namespace AlgorithmsTests.Sorting
 
 			BubbleSort.SortDescending(ref data);
 
+			Logger.WriteLine(JsonSerializer.Serialize(data));
+
 			for (int i = 0; i < data.Length - 1; i++)
 			{
 				if (data[i] < data[i + 1])

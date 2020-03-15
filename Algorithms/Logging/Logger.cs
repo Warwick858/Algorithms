@@ -30,6 +30,9 @@ using System.Diagnostics;
 
 namespace Algorithms.Logging
 {
+	/// <summary>
+	/// Sudo-logger that prints given messages to a file.
+	/// </summary>
 	public static class Logger
 	{
 		private static string _logPath = @"D:\Documents\Computer Science\Algorithms\C#\Algorithms\Algorithms\Logs\log.txt";

@@ -40,29 +40,17 @@ namespace Algorithms.Sorting
 		public static void SortAscending(ref int[] data)
 		{
 			for (int j = 0; j < data.Length - 1; j++)
-			{
 				for (int i = 0; i < data.Length - 1; i++)
-				{
 					if (data[i] > data[i + 1])
-					{
 						Swap(ref data[i], ref data[i + 1]);
-					}
-				} // end for
-			} // end for
 		} // end method
 
 		public static void SortDescending(ref int[] data)
 		{
 			for (int j = 0; j < data.Length - 1; j++)
-			{
 				for (int i = 0; i < data.Length - 1; i++)
-				{
 					if (data[i] < data[i + 1])
-					{
 						Swap(ref data[i], ref data[i + 1]);
-					}
-				} // end for
-			} // end for
 		} // end method
 
 		public static void Swap(ref int a, ref int b)

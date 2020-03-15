@@ -32,18 +32,33 @@ using System.Text;
 
 namespace Algorithms.Sorting
 {
+	/// <summary>
+	/// SHELL SORT
+	/// Best used for
+	/// Sorted, not sorted?
+	/// etc
+	/// </summary>
 	public static class ShellSort
 	{
 		public static void SortAscending(ref int[] data)
 		{
-			for (int j = 0; j < data.Length - 1; j++)
+			//Cut the shell in half each time through
+			for (int shell = ((data.Length + 1) / 2); shell > 0; shell /= 2)
 			{
-				for (int i = 0; i < data.Length - 1; i++)
+				//Increment shell through array until end (size) is reached
+				for (int i = shell; i < data.Length; i++)
 				{
-					if (data[i] > data[i + 1])
+					//Save j as i - Reduce j by shell length
+					for (int j = i; j >= shell; j -= shell) // j -= shell
 					{
-						Swap(ref data[i], ref data[i + 1]);
-					}
+						//If the right element is less than the left element
+						if (data[i] < data[j - shell])
+						{
+							Swap(ref data[j], ref data[j - shell]);
+						}
+						else
+							break;
+					} // end for
 				} // end for
 			} // end for
 		} // end method

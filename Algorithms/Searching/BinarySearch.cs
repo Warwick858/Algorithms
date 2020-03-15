@@ -32,6 +32,12 @@ using System.Text;
 
 namespace Algorithms.Searching
 {
+	/// <summary>
+	/// BINARY SEARCH
+	/// Best used for
+	/// Sorted, not sorted?
+	/// etc
+	/// </summary>
 	public static class BinarySearch
 	{
 		public static void SortAscending(ref int[] data)

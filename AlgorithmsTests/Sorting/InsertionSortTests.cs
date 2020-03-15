@@ -29,6 +29,7 @@
 using Algorithms.Logging;
 using Algorithms.Sorting;
 using NUnit.Framework;
+using System.Diagnostics;
 using System.Text.Json;
 
 namespace AlgorithmsTests.Sorting
@@ -36,12 +37,13 @@ namespace AlgorithmsTests.Sorting
 	[TestFixture]
 	public class InsertionSortTests
 	{
+		private Stopwatch _stopWatch;
 		private int[] _data1;
 
-
-		[OneTimeSetUp]
+		[SetUp]
 		public void Setup()
 		{
+			_stopWatch = new Stopwatch();
 			_data1 = new int[] { 5, 21, 43, 66, 43, 66, 21, 5, 2, 7, 7, 8, 1, 2, 3, 4, 4, 3, 2, 1 };
 		}
 
@@ -50,9 +52,14 @@ namespace AlgorithmsTests.Sorting
 		{
 			int[] data = _data1;
 
-			BubbleSort.SortAscending(ref data);
+			_stopWatch.Start();
+			InsertionSort.SortAscending(ref data);
+			_stopWatch.Stop();
 
-			Logger.WriteLine(JsonSerializer.Serialize(data));
+			Logger.WriteLine($"**********************************************************************");
+			Logger.WriteLine($"InsertionSort | ascending | output: {JsonSerializer.Serialize(data)}");
+			Logger.WriteLine($"Elapsed Time: {_stopWatch.Elapsed.ToString()}");
+			Logger.WriteLine($"**********************************************************************");
 
 			for (int i = 0; i < data.Length - 1; i++)
 			{
@@ -68,9 +75,14 @@ namespace AlgorithmsTests.Sorting
 		{
 			int[] data = _data1;
 
-			BubbleSort.SortDescending(ref data);
+			_stopWatch.Start();
+			InsertionSort.SortDescending(ref data);
+			_stopWatch.Stop();
 
-			Logger.WriteLine(JsonSerializer.Serialize(data));
+			Logger.WriteLine($"**********************************************************************");
+			Logger.WriteLine($"InsertionSort | descending | output: {JsonSerializer.Serialize(data)}");
+			Logger.WriteLine($"Elapsed Time: {_stopWatch.Elapsed.ToString()}");
+			Logger.WriteLine($"**********************************************************************");
 
 			for (int i = 0; i < data.Length - 1; i++)
 			{
@@ -87,7 +99,7 @@ namespace AlgorithmsTests.Sorting
 			int a = 7;
 			int b = 2;
 
-			BubbleSort.Swap(ref a, ref b);
+			InsertionSort.Swap(ref a, ref b);
 
 			Assert.IsTrue(a == 2);
 			Assert.IsTrue(b == 7);

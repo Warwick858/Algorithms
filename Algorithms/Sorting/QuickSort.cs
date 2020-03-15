@@ -53,7 +53,6 @@ namespace Algorithms.Sorting
 			if (left < right)
 			{
 				int pivot = PartitionAscending(ref data, left, right);
-
 				SortAscending_Recursive(ref data, left, pivot - 1);
 				SortAscending_Recursive(ref data, pivot + 1, right);
 			}
@@ -66,7 +65,6 @@ namespace Algorithms.Sorting
 
 			for (int j = left; j <= right - 1; j++)
 			{
-				// If current element is smaller than the pivot
 				if (data[j] < pivot)
 				{
 					i++;
@@ -75,6 +73,7 @@ namespace Algorithms.Sorting
 			} // end for
 
 			Swap(ref data[i + 1], ref data[right]);
+
 			return (i + 1);
 		} // end method
 
@@ -88,7 +87,6 @@ namespace Algorithms.Sorting
 			if (left < right)
 			{
 				int pivot = PartitionDescending(ref data, left, right);
-
 				SortDescending_Recursive(ref data, left, pivot - 1);
 				SortDescending_Recursive(ref data, pivot + 1, right);
 			}
@@ -109,6 +107,7 @@ namespace Algorithms.Sorting
 			} // end for
 
 			Swap(ref data[i + 1], ref data[right]);
+
 			return (i + 1);
 		} // end method
 

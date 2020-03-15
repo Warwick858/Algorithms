@@ -31,6 +31,14 @@ using System.Linq;
 
 namespace Algorithms.Sorting
 {
+	/// <summary>
+	/// MERGE SORT
+	/// Time Complexity: O(n log n)
+	/// ******************************************************
+	/// Merge Sort is a Divide and Conquer algorithm.
+	/// Divide the unsorted list into n sublists, each containing 1 element (a list of 1 element is considered sorted).
+	/// Repeatedly merge sublists to produce new sorted sublists until there is only 1 sublist remaining. This will be the sorted list.
+	/// </summary>
 	public static class MergeSort
 	{
 		public static List<int> SortAscending(List<int> unsorted)
@@ -43,7 +51,7 @@ namespace Algorithms.Sorting
 
 			int middle = unsorted.Count / 2;
 
-			for (int i = 0; i < middle; i++)  //Dividing the unsorted list
+			for (int i = 0; i < middle; i++)
 				left.Add(unsorted[i]);
 
 			for (int i = middle; i < unsorted.Count; i++)
@@ -62,10 +70,10 @@ namespace Algorithms.Sorting
 			{
 				if (left.Count > 0 && right.Count > 0)
 				{
-					if (left.First() <= right.First()) //Comparing First two elements to see which is smaller
+					if (left.First() <= right.First())
 					{
 						result.Add(left.First());
-						left.Remove(left.First()); //Rest of the list minus the first element
+						left.Remove(left.First());
 					}
 					else
 					{
@@ -98,7 +106,7 @@ namespace Algorithms.Sorting
 
 			int middle = unsorted.Count / 2;
 
-			for (int i = 0; i < middle; i++)  //Dividing the unsorted list
+			for (int i = 0; i < middle; i++)
 				left.Add(unsorted[i]);
 
 			for (int i = middle; i < unsorted.Count; i++)
@@ -117,10 +125,10 @@ namespace Algorithms.Sorting
 			{
 				if (left.Count > 0 && right.Count > 0)
 				{
-					if (left.First() >= right.First()) //Comparing First two elements to see which is smaller
+					if (left.First() >= right.First())
 					{
 						result.Add(left.First());
-						left.Remove(left.First()); //Rest of the list minus the first element
+						left.Remove(left.First());
 					}
 					else
 					{
